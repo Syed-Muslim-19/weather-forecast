@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <title>Weather Forecast</title>
+  </head>
+  <style>
+    body {
+      background: url(https://i.pinimg.com/564x/52/41/26/524126103bd3dcc45993baa72cf96ef4.jpg)
+        no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-shadow: 1px 1px 5px black;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .menu {
+      width: max-content;
+      background-color: rgba(0, 0, 0, 0.116);
+      border-radius: 20px;
+      border: 1px solid white;
+      box-shadow: 3px 3px 50px white;
+      padding: 50px;
+      text-align: center;
+    }
+    .search {
+      color: white;
+      font-weight: bolder;
+      background-color: transparent;
+      border: 1px solid white;
+      margin-left: -2px;
+      padding: 4px;
+      border-radius: 0px 10px 10px 0px;
+    }
+    #cityInput {
+      border-radius: 10px 0px 0px 10px;
+      border: none;
+      padding: 5px;
+    }
+  </style>
+  <body>
+    <div class="menu">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <button onclick="fetchWeather()" class="search">Get Weather</button>
+      <div class="weathericon">
+        <h1>
+          <i class="fa-solid fa-sun" style="color: yellow"></i>
+        </h1>
+      </div>
+      <div class="information">
+        <div class="location">
+          <h2>
+            <i class="fa-solid fa-location-dot"></i>
+            <span id="location">{%location%}, {%country%}</span>
+          </h2>
+        </div>
+        <div class="data">
+          <div class="date">
+            <p></p>
+          </div>
+          <div class="temp">
+            <h1><span id="temp">{%tempval%}</span> &deg;C</h1>
+          </div>
+          <div class="minmax">
+            <p>
+              Min <span id="tempmin">{%tempmin%}</span> | Max
+              <span id="tempmax">{%tempmax%}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const Dates = document.getElementsByClassName("date");
+      const WeatherIcon = document.getElementsByClassName("weathericon");
+
+      const getCurrentTime = () => {
+        const days = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        let currentTime = new Date();
+        let day = days[currentTime.getDay()];
+        let month = months[currentTime.getMonth()];
+        let date = currentTime.getDate();
+        let year = currentTime.getFullYear();
+
+        return `${day}, ${month} ${date}, ${year}`;
+      };
+
+      Dates[0].getElementsByTagName("p")[0].innerHTML = getCurrentTime();
+
+      const fetchWeather = () => {
+        const city = document.getElementById("cityInput").value;
+        if (city) {
+          window.location.href = `/?city=${city}`;
+        }
+      };
+    </script>
+  </body>
+</html>

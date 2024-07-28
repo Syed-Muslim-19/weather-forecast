@@ -1,0 +1,15 @@
+body {
+  background-color: rgb(0 192 229);
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.menu {
+  height: max-content;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.441);
+  border-radius: 20px;
+  border: 1px solid white;
+  box-shadow: 3px 3px 50px white;
+  padding: 20px;
+}
